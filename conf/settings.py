@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "api.apps.ApiConfig",
     "cards.apps.CardsConfig",
+    "django_vite",
 ]
 
 MIDDLEWARE = [
@@ -140,7 +141,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+
+# Where ViteJS assets are built.
+DJANGO_VITE_ASSETS_PATH = BASE_DIR / "static" / "dist"
+
+# If use HMR or not.
+DJANGO_VITE_DEV_MODE = DEBUG
+
+# Name of static files folder (after called python manage.py collectstatic)
+STATIC_ROOT = BASE_DIR / "collectedstatic"
+
+# Include DJANGO_VITE_ASSETS_PATH into STATICFILES_DIRS to be copied inside
+# when run command python manage.py collectstatic
+STATICFILES_DIRS = [DJANGO_VITE_ASSETS_PATH]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -161,3 +175,18 @@ SITE_ID = 1
 # https://docs.djangoproject.com/en/4.1/ref/settings/#media-url
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+
+# Email backend
+# https://docs.djangoproject.com/en/3.0/ref/settings/#email-backend
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Static file directories
+# https://docs.djangoproject.com/en/4.1/ref/settings/#staticfiles-dirs
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "frontend/static/dist"),)
+REACT_APP_DIR = os.path.join(BASE_DIR, "frontend/static")
+
+REST_AUTH_SERIALIZERS = {
+    "TOKEN_SERIALIZER": "accounts.serializers.TokenSerializer",
+}
