@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+import mimetypes
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,16 +41,19 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.sites",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
-    # 3rd Part
+    # 3rd Party
     "rest_framework",
     "rest_framework.authtoken",
     "dj_rest_auth",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "dj_rest_auth.registration",
     # Local
     "accounts.apps.AccountsConfig",
+    "frontend.apps.FrontendConfig",
     "api.apps.ApiConfig",
     "cards.apps.CardsConfig",
     "django_vite",
@@ -57,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -141,7 +146,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 # Where ViteJS assets are built.
 DJANGO_VITE_ASSETS_PATH = BASE_DIR / "static" / "dist"
@@ -150,7 +155,7 @@ DJANGO_VITE_ASSETS_PATH = BASE_DIR / "static" / "dist"
 DJANGO_VITE_DEV_MODE = DEBUG
 
 # Name of static files folder (after called python manage.py collectstatic)
-STATIC_ROOT = BASE_DIR / "collectedstatic"
+# STATIC_ROOT = BASE_DIR / "collectedstatic"
 
 # Include DJANGO_VITE_ASSETS_PATH into STATICFILES_DIRS to be copied inside
 # when run command python manage.py collectstatic
@@ -168,6 +173,14 @@ AUTH_USER_MODEL = "accounts.User"
 
 # Site ID
 # https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-SITE_ID
+
+# Static file directories
+# https://docs.djangoproject.com/en/3.1/ref/settings/#staticfiles-dirs
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+WHITENOISE_MIMETYPES = {".xsl": "application/xml"}
 
 SITE_ID = 1
 
@@ -190,3 +203,5 @@ REACT_APP_DIR = os.path.join(BASE_DIR, "frontend/static")
 REST_AUTH_SERIALIZERS = {
     "TOKEN_SERIALIZER": "accounts.serializers.TokenSerializer",
 }
+
+mimetypes.add_type("text/html", ".css", True)
