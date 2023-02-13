@@ -180,7 +180,9 @@ AUTH_USER_MODEL = "accounts.User"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-WHITENOISE_MIMETYPES = {".xsl": "application/xml"}
+mimetypes.add_type("text/html", ".css", True)
+# WHITENOISE_MIMETYPES = {".xsl": "application/xml"}
+
 
 SITE_ID = 1
 
@@ -197,11 +199,9 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # Static file directories
 # https://docs.djangoproject.com/en/4.1/ref/settings/#staticfiles-dirs
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "frontend/static/dist"),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "frontend/static/"),)
 REACT_APP_DIR = os.path.join(BASE_DIR, "frontend/static")
 
 REST_AUTH_SERIALIZERS = {
     "TOKEN_SERIALIZER": "accounts.serializers.TokenSerializer",
 }
-
-mimetypes.add_type("text/html", ".css", True)
