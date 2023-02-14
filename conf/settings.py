@@ -146,10 +146,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 # Where ViteJS assets are built.
-DJANGO_VITE_ASSETS_PATH = BASE_DIR / "static" / "dist"
+DJANGO_VITE_ASSETS_PATH = BASE_DIR / "frontend" / "static" / "dist"
 
 # If use HMR or not.
 DJANGO_VITE_DEV_MODE = DEBUG
@@ -181,7 +181,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 mimetypes.add_type("text/html", ".css", True)
-# WHITENOISE_MIMETYPES = {".xsl": "application/xml"}
+WHITENOISE_MIMETYPES = {".xsl": "application/xml"}
 
 
 SITE_ID = 1
@@ -200,7 +200,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#staticfiles-dirs
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "frontend/static/"),)
-REACT_APP_DIR = os.path.join(BASE_DIR, "frontend/static")
+REACT_APP_DIR = os.path.join(BASE_DIR, "frontend/static/")
 
 REST_AUTH_SERIALIZERS = {
     "TOKEN_SERIALIZER": "accounts.serializers.TokenSerializer",
