@@ -2,7 +2,7 @@ import "../Header/HeaderNav.css";
 import { Link, useOutlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useState, useEffect } from "react";
-import Header from "../Header/Header";
+import Header from "../../components/Header";
 import { handleError } from "../../utils";
 //Bootstrap
 import Nav from "react-bootstrap/Nav";
@@ -12,9 +12,10 @@ import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 //React Icons
 import { HiOutlineMenu } from "react-icons/hi";
+import { whoseHandIsItAnyway } from "./utils";
 
 export const ProtectedLayout = () => {
-  const { user, logout } = useAuth();
+  const { user, logout }: any = useAuth();
   const outlet = useOutlet();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -33,7 +34,7 @@ export const ProtectedLayout = () => {
     const response = await fetch("/dj-rest-auth/logout/", options).catch(
       handleError
     );
-    if (!response.ok) {
+    if (!response) {
       throw new Error("Oops! Something went wrong");
     } else {
       const data = await response.json();
@@ -55,14 +56,6 @@ export const ProtectedLayout = () => {
       handleClose();
     }
     logout();
-  };
-
-  const whoseHandIsItAnyway = () => {
-    if (user?.right_handed) {
-      return "end";
-    } else {
-      return "start";
-    }
   };
 
   useEffect(() => {
@@ -93,13 +86,12 @@ export const ProtectedLayout = () => {
           >
             <HiOutlineMenu />
           </button>
-          <div></div>
         </div>
       )}
 
       <header className="col-12 navheader">
         <Offcanvas
-          placement={whoseHandIsItAnyway()}
+          placement={whoseHandIsItAnyway(user)}
           show={show}
           onHide={handleClose}
           responsive="md"
