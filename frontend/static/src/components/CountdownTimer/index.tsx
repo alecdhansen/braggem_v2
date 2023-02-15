@@ -60,7 +60,7 @@ const ShowCounter = ({
   );
 };
 
-export const CountdownTimer = (targetDate: number) => {
+const CountdownTimer = (targetDate: number) => {
   const [days, hours, minutes, seconds] = useCountdown(targetDate);
   if (!seconds) {
     return <ColorRangeContainer />;
