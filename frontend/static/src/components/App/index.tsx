@@ -12,7 +12,7 @@ import Fof from "../404Page";
 // import UserInfo from "../Users/UserInfo";
 
 const App = () => {
-  const { user } = useAuth();
+  const { user }: any = useAuth();
 
   return (
     <>

@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 // import { IoIosArrowBack } from "react-icons/io";
 
 const UserInfo = () => {
-  const { user } = useAuth();
+  const { user }: any = useAuth();
   const [userData, setUserData] = useState(Object);
   const [lifetimePicks, setLifetimePicks] = useState([]);
   const navigate = useNavigate();
