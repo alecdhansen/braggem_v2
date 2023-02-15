@@ -5,13 +5,20 @@ import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import { handleError } from "../../utils";
 import { Toast, whoseHandIsItAnyway } from "./utils";
-import { HamburgerButton, HamburgerContainer, HeaderContainer } from "./style";
+import {
+  ActiveButton,
+  Button,
+  HamburgerButton,
+  HamburgerContainer,
+  HeaderContainer,
+  NavItem,
+  OffcanvasBody,
+  OffcanvasHeader,
+} from "./style";
 //Bootstrap
-import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
 //Npm
 import Cookies from "js-cookie";
-import Swal from "sweetalert2";
 //React Icons
 import { HiOutlineMenu } from "react-icons/hi";
 
@@ -58,7 +65,6 @@ export const ProtectedLayout = () => {
   return (
     <>
       <Header />
-
       {user?.right_handed ? (
         <HamburgerContainer>
           <HamburgerButton padding="20px 20px 10px 0px" onClick={handleShow}>
@@ -72,7 +78,6 @@ export const ProtectedLayout = () => {
           </HamburgerButton>
         </HamburgerContainer>
       )}
-
       <HeaderContainer>
         <Offcanvas
           placement={whoseHandIsItAnyway(user)}
@@ -80,77 +85,52 @@ export const ProtectedLayout = () => {
           onHide={handleClose}
           responsive="md"
         >
-          <Offcanvas.Header
-            closeButton
-            closeVariant="white"
-            className="offcanvasheader"
-          ></Offcanvas.Header>
-
-          <Offcanvas.Body className="offcanvasbody">
-            <Nav.Item className="navlink">
-              <Link to={`/home/${user?.username}/`} className="link">
-                <button
-                  className={
-                    window.location.href.includes(`/home/${user?.username}/`)
-                      ? "navbtnactive"
-                      : "navbtn"
-                  }
-                  onClick={handleClose}
-                >
-                  Profile
-                </button>
+          <OffcanvasHeader closeButton closeVariant="white" />
+          <OffcanvasBody>
+            <NavItem>
+              <Link to={`/home/${user?.username}/`}>
+                {window.location.href.includes(`/home/${user?.username}/`) ? (
+                  <ActiveButton onClick={handleClose}>Profile</ActiveButton>
+                ) : (
+                  <Button onClick={handleClose}>Profile</Button>
+                )}
               </Link>
-            </Nav.Item>
-            <Nav.Item className="navlink">
+            </NavItem>
+            <NavItem>
               <Link to={"leaderboard"}>
-                <button
-                  className={
-                    window.location.href.includes("leaderboard")
-                      ? "navbtnactive"
-                      : "navbtn"
-                  }
-                  onClick={handleClose}
-                >
-                  Leaderboard
-                </button>
+                {window.location.href.includes("leaderboard") ? (
+                  <ActiveButton onClick={handleClose}>Leaderboard</ActiveButton>
+                ) : (
+                  <Button onClick={handleClose}>Leaderboard</Button>
+                )}
               </Link>
-            </Nav.Item>
-            <Nav.Item className="navlink">
-              <Link to={"/home/games/"} className="linkto">
-                <button
-                  type="button"
-                  autoFocus
-                  className={
-                    window.location.href.includes("/home/games/")
-                      ? "navbtnactive"
-                      : "navbtn"
-                  }
-                  onClick={handleClose}
-                >
-                  Home
-                </button>
+            </NavItem>
+            <NavItem>
+              <Link to={"/home/games/"}>
+                {window.location.href.includes("/home/games/") ? (
+                  <ActiveButton autoFocus onClick={handleClose}>
+                    Home
+                  </ActiveButton>
+                ) : (
+                  <Button onClick={handleClose}>Home</Button>
+                )}
               </Link>
-            </Nav.Item>
-            <Nav.Item className="navlink">
+            </NavItem>
+            <NavItem>
               <Link to={"headtohead"}>
-                <button
-                  className={
-                    window.location.href.includes("headtohead")
-                      ? "navbtnactive"
-                      : "navbtn"
-                  }
-                  onClick={handleClose}
-                >
-                  Head to Head
-                </button>
+                {window.location.href.includes("headtohead") ? (
+                  <ActiveButton onClick={handleClose}>
+                    Head to Head
+                  </ActiveButton>
+                ) : (
+                  <Button onClick={handleClose}>Head to Head</Button>
+                )}
               </Link>
-            </Nav.Item>
-            <Nav.Item className="navlink">
-              <button className="navbtn" onClick={() => logoutUser()}>
-                Logout
-              </button>
-            </Nav.Item>
-          </Offcanvas.Body>
+            </NavItem>
+            <NavItem>
+              <Button onClick={() => logoutUser()}>Logout</Button>
+            </NavItem>
+          </OffcanvasBody>
         </Offcanvas>
       </HeaderContainer>
       {outlet}
