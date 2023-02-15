@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import { handleError } from "../../utils";
 import { Toast, whoseHandIsItAnyway } from "./utils";
+import { HamburgerButton, HamburgerContainer, HeaderContainer } from "./style";
 //Bootstrap
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -59,27 +60,20 @@ export const ProtectedLayout = () => {
       <Header />
 
       {user?.right_handed ? (
-        <div className="righthand">
-          <div></div>
-          <button
-            className="offcanvasopenbtnright mobilemenu"
-            onClick={handleShow}
-          >
+        <HamburgerContainer>
+          <HamburgerButton padding="20px 20px 10px 0px" onClick={handleShow}>
             <HiOutlineMenu />
-          </button>
-        </div>
+          </HamburgerButton>
+        </HamburgerContainer>
       ) : (
-        <div className="lefthand">
-          <button
-            className="offcanvasopenbtnleft mobilemenu"
-            onClick={handleShow}
-          >
+        <HamburgerContainer>
+          <HamburgerButton padding="20px 0px 10px 20px" onClick={handleShow}>
             <HiOutlineMenu />
-          </button>
-        </div>
+          </HamburgerButton>
+        </HamburgerContainer>
       )}
 
-      <header className="col-12 navheader">
+      <HeaderContainer>
         <Offcanvas
           placement={whoseHandIsItAnyway(user)}
           show={show}
@@ -158,7 +152,7 @@ export const ProtectedLayout = () => {
             </Nav.Item>
           </Offcanvas.Body>
         </Offcanvas>
-      </header>
+      </HeaderContainer>
       {outlet}
     </>
   );
