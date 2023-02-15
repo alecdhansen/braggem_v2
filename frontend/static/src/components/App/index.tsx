@@ -17,17 +17,17 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route element={<UnprotectedLayout />}>
+        {/* <Route element={<UnprotectedLayout />}>
           <Route path="/" element={<LoginHome />} />
           <Route path="/register" element={<Register />} />
-        </Route>
-        <Route path="/home" element={<ProtectedLayout />}>
+        </Route> */}
+        {/* <Route path="/home" element={<ProtectedLayout />}>
           <Route path="games" element={<Card />} />
           <Route path={user?.username} element={<ProfilePage />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="headtohead" element={<HeadToHead />} />
           <Route path=":username" element={<UserInfo />} />
-        </Route>
+        </Route> */}
         <Route path="*" element={<Fof />} />
       </Routes>
     </>

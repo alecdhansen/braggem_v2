@@ -31,6 +31,7 @@ export const UpperContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 50vh;
+  width: 100vw;
 `;
 
 export const LowerContainer = styled.div`
