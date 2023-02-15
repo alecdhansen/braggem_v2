@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import { handleError } from "../../utils";
+import { Toast, whoseHandIsItAnyway } from "./utils";
 //Bootstrap
 import Nav from "react-bootstrap/Nav";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -12,7 +13,6 @@ import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 //React Icons
 import { HiOutlineMenu } from "react-icons/hi";
-import { whoseHandIsItAnyway } from "./utils";
 
 export const ProtectedLayout = () => {
   const { user, logout }: any = useAuth();
@@ -39,16 +39,6 @@ export const ProtectedLayout = () => {
     } else {
       const data = await response.json();
       Cookies.remove("Authorization", `Token${" "}${data.key}`);
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "bottom-end",
-        showConfirmButton: false,
-        timer: 2000,
-        didOpen: (toast) => {
-          toast.addEventListener("mouseenter", Swal.stopTimer);
-          toast.addEventListener("mouseleave", Swal.resumeTimer);
-        },
-      });
       Toast.fire({
         icon: "warning",
         title: "You are now logged out.",
