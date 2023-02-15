@@ -35,3 +35,35 @@ export const Circle = styled.div`
   /* here */
   background-color: #25374f;
 `;
+
+export const HeaderTitle = styled.h2`
+  margin-bottom: 0px;
+  font-family: "Bowlby One SC", cursive;
+  font-size: 80px;
+  text-shadow: 5px 5px 2px var(--navyblue);
+  color: rgb(236, 236, 236);
+  z-index: 20;
+  @media (max-width: 768px) {
+    font-size: 65px;
+    font-stretch: expanded;
+  }
+  @media (max-width: 400px) {
+    font-size: 65px;
+    font-stretch: expanded;
+  }
+`;
+
+export const CourtLogoContainer = styled.div`
+  position: absolute;
+  z-index: 50;
+  width: 150px;
+  right: 18%;
+  top: -75%;
+  opacity: 0.8;
+  @media (max-width: 1080px) {
+    display: none;
+  }
+  & > img {
+    width: 100%;
+  }
+`;
