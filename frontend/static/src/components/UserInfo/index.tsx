@@ -7,6 +7,7 @@ import { handleError } from "../../utils";
 import moment from "moment";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
+import { BackButtonContainer } from "./style";
 //React Icons
 // import { MdOutlinePersonAddAlt } from "react-icons/md";
 // import { IoIosArrowBack } from "react-icons/io";
@@ -70,7 +71,6 @@ const UserInfo = () => {
     const formData = new FormData();
     formData.append("challenger", user.user);
     formData.append("opponent", userData.user);
-
     formData.append("date", today);
     const options = {
       method: "POST",
@@ -104,13 +104,13 @@ const UserInfo = () => {
 
   return (
     <>
-      <section className="takemebackbtn">
+      <BackButtonContainer>
         <Link to="/home/leaderboard/">
           <button className="btn404 backtoleaderboard">
             {/* <IoIosArrowBack /> Back to Leaderboard */}
           </button>
         </Link>
-      </section>
+      </BackButtonContainer>
       <div className="col-md-6 offset-md-3 col-10 offset-1 userbox">
         <div className={`landscape${userData?.favorite_team}`}>
           <div className="teamimgboxuser">
@@ -121,7 +121,6 @@ const UserInfo = () => {
             ></img>
           </div>
         </div>
-
         <div className="avatarsection">
           <div className="avatarbox">
             <img
