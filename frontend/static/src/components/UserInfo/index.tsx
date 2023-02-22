@@ -12,11 +12,22 @@ import {
   AvatarSection,
   BackButton,
   BackButtonContainer,
+  ChallengeButton,
+  ChallengeContainer,
+  DateJoined,
   ImageContainer,
+  Label,
   LandscapeContainer,
+  LifetimeContainer,
+  MainStatsContainer,
+  NumbersContainer,
+  StatsHeader,
   TeamImage,
+  TitlesContainer,
   UserBoxContainer,
   UserImage,
+  Username,
+  UsernameContainer,
 } from "./style";
 import { favoriteTeam } from "./utils";
 // React Icons
@@ -138,32 +149,32 @@ const UserInfo = () => {
             <UserImage src={userData?.avatar} alt="" />
           </AvatarBox>
         </AvatarSection>
-        <div className="usernameedit">
-          <h4 className="username hello">{userData?.username}</h4>
-        </div>
-        <span className="datejoined dj2">User since {dateJoined}</span>
-        <div className="mainstats">
-          <div className="lifetime2">
-            <h2 className="mystatsheader2">Lifetime Stats</h2>
-            <div className="guesstitles row">
-              <span className="spanlabels2 col-4">Correct Picks</span>
-              <span className="spanlabels2 col-4">Games</span>
-              <span className="spanlabels2 col-4">Percentage</span>
-            </div>
-            <div className="guessnumbers row">
-              <span className="col-4">{lifetimeCorrectGuesses}</span>
-              <span className="col-4">{lifetimeTotalGuesses}</span>
-              <span className="col-4">{lifetimeGuessPercentage}%</span>
-            </div>
-          </div>
-          <div>
-            <Link to="/home/headtohead" className="challengelink">
-              <button className="challengebtn" onClick={handleSubmit}>
+        <UsernameContainer>
+          <Username>{userData?.username}</Username>
+        </UsernameContainer>
+        <DateJoined>User since {dateJoined}</DateJoined>
+        <MainStatsContainer>
+          <LifetimeContainer>
+            <StatsHeader>Lifetime Stats</StatsHeader>
+            <TitlesContainer>
+              <Label textDecoration="underline">Correct Picks</Label>
+              <Label textDecoration="underline">Games</Label>
+              <Label textDecoration="underline">Percentage</Label>
+            </TitlesContainer>
+            <NumbersContainer>
+              <Label>{lifetimeCorrectGuesses}</Label>
+              <Label>{lifetimeTotalGuesses}</Label>
+              <Label>{lifetimeGuessPercentage}%</Label>
+            </NumbersContainer>
+          </LifetimeContainer>
+          <ChallengeContainer>
+            <Link to="/home/headtohead">
+              <ChallengeButton onClick={handleSubmit}>
                 Challenge <MdOutlinePersonAddAlt />
-              </button>
+              </ChallengeButton>
             </Link>
-          </div>
-        </div>
+          </ChallengeContainer>
+        </MainStatsContainer>
       </UserBoxContainer>
     </>
   );
