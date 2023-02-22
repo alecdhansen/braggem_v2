@@ -8,15 +8,20 @@ import moment from "moment";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import {
+  AvatarBox,
+  AvatarSection,
   BackButton,
   BackButtonContainer,
+  ImageContainer,
   LandscapeContainer,
+  TeamImage,
   UserBoxContainer,
+  UserImage,
 } from "./style";
 import { favoriteTeam } from "./utils";
-//React Icons
-// import { MdOutlinePersonAddAlt } from "react-icons/md";
-// import { IoIosArrowBack } from "react-icons/io";
+// React Icons
+import { MdOutlinePersonAddAlt } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
 
 const UserInfo = () => {
   const { user }: any = useAuth();
@@ -113,7 +118,7 @@ const UserInfo = () => {
       <BackButtonContainer>
         <Link to="/home/leaderboard/">
           <BackButton>
-            {/* <IoIosArrowBack /> Back to Leaderboard */}
+            <IoIosArrowBack /> Back to Leaderboard
           </BackButton>
         </Link>
       </BackButtonContainer>
@@ -121,28 +126,18 @@ const UserInfo = () => {
         <LandscapeContainer
           background={`${favoriteTeam(userData?.favorite_team)}`}
         >
-          <div className="teamimgboxuser">
-            <img
+          <ImageContainer>
+            <TeamImage
               src={require(`../../media/${userData?.favorite_team}.png`)}
-              style={{ width: "100%" }}
               alt=""
-            ></img>
-          </div>
-        </LandscapeContainer>
-        <div className="avatarsection">
-          <div className="avatarbox">
-            <img
-              src={userData?.avatar}
-              alt=""
-              style={{
-                width: "100%",
-                overflow: "hidden",
-                borderRadius: "50%",
-                objectFit: "cover",
-              }}
             />
-          </div>
-        </div>
+          </ImageContainer>
+        </LandscapeContainer>
+        <AvatarSection>
+          <AvatarBox>
+            <UserImage src={userData?.avatar} alt="" />
+          </AvatarBox>
+        </AvatarSection>
         <div className="usernameedit">
           <h4 className="username hello">{userData?.username}</h4>
         </div>
@@ -164,7 +159,7 @@ const UserInfo = () => {
           <div>
             <Link to="/home/headtohead" className="challengelink">
               <button className="challengebtn" onClick={handleSubmit}>
-                {/* Challenge <MdOutlinePersonAddAlt /> */}
+                Challenge <MdOutlinePersonAddAlt />
               </button>
             </Link>
           </div>

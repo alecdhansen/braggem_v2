@@ -40,4 +40,45 @@ export const LandscapeContainer = styled.div<TeamProps>`
   justify-content: flex-end;
   align-items: center;
   background: ${({ background }) => background};
+  @media (max-width: 768px) {
+    width: 100%;
+    border-radius: 0px;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  width: 100px;
+  margin-right: 0px;
+  @media (max-width: 768px) {
+    width: 100px;
+    margin-right: 0px;
+  }
+`;
+
+export const TeamImage = styled.img`
+  width: 100%;
+`;
+
+export const AvatarSection = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const AvatarBox = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid var(--navyblue);
+  background-color: #fff;
+  position: absolute;
+`;
+
+export const UserImage = styled.img`
+  width: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
 `;
