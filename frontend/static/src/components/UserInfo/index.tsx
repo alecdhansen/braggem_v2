@@ -7,7 +7,13 @@ import { handleError } from "../../utils";
 import moment from "moment";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-import { BackButtonContainer } from "./style";
+import {
+  BackButton,
+  BackButtonContainer,
+  LandscapeContainer,
+  UserBoxContainer,
+} from "./style";
+import { favoriteTeam } from "./utils";
 //React Icons
 // import { MdOutlinePersonAddAlt } from "react-icons/md";
 // import { IoIosArrowBack } from "react-icons/io";
@@ -106,13 +112,15 @@ const UserInfo = () => {
     <>
       <BackButtonContainer>
         <Link to="/home/leaderboard/">
-          <button className="btn404 backtoleaderboard">
+          <BackButton>
             {/* <IoIosArrowBack /> Back to Leaderboard */}
-          </button>
+          </BackButton>
         </Link>
       </BackButtonContainer>
-      <div className="col-md-6 offset-md-3 col-10 offset-1 userbox">
-        <div className={`landscape${userData?.favorite_team}`}>
+      <UserBoxContainer>
+        <LandscapeContainer
+          background={`${favoriteTeam(userData?.favorite_team)}`}
+        >
           <div className="teamimgboxuser">
             <img
               src={require(`../../media/${userData?.favorite_team}.png`)}
@@ -120,7 +128,7 @@ const UserInfo = () => {
               alt=""
             ></img>
           </div>
-        </div>
+        </LandscapeContainer>
         <div className="avatarsection">
           <div className="avatarbox">
             <img
@@ -161,7 +169,7 @@ const UserInfo = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </UserBoxContainer>
     </>
   );
 };
