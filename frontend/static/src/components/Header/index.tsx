@@ -1,4 +1,3 @@
-import "./HeaderNav.css";
 import { useAuth } from "../../hooks/useAuth";
 import {
   Circle,
