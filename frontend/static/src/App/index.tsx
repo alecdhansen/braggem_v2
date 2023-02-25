@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { ProtectedLayout } from "../navigation/ProtectedLayout";
 // import Card from "../Card/Card";
 import UnprotectedLayout from "../navigation/UnprotectedLayout";
-import LoginScreen from "../components/LoginScreen";
+import LoginScreen from "../components/Login/LoginScreen";
 import Fof from "../components/404Page";
 // import Register from "../Login/Register";
 // import ProfilePage from "../Profile/ProfilePage";

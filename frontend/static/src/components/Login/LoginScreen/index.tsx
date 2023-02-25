@@ -9,15 +9,14 @@ import {
   QuickAccessContainer,
   RegisterContainer,
 } from "./style";
-// import TwitterLogin from "./TwitterLogin";
-// import AppLogin from "./AppLogin";
+import AppLogin from "../AppLogin";
 
 const LoginScreen = () => {
   return (
     <>
       <MainContainer>
         <LoginContainer>
-          {/* <AppLogin /> */}
+          <AppLogin />
           <RegisterContainer>
             <QuestionContainer>Don't have an account?</QuestionContainer>
             <Link to="register" style={{ textDecoration: "none" }}>
