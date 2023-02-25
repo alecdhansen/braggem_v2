@@ -11,8 +11,8 @@ import {
   FormGroup,
   FormLabel,
   LoginForm,
-  SubmitButton,
 } from "./style";
+import { SubmitButton } from "../utils";
 
 const AppLogin = () => {
   const { login }: any = useAuth();
