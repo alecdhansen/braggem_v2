@@ -5,7 +5,7 @@ import { ProtectedLayout } from "../navigation/ProtectedLayout";
 import UnprotectedLayout from "../navigation/UnprotectedLayout";
 import LoginScreen from "../components/Login/LoginScreen";
 import Fof from "../components/404Page";
-// import Register from "../Login/Register";
+import Register from "../components/Login/Register";
 // import ProfilePage from "../Profile/ProfilePage";
 // import Leaderboard from "../Leaderboard/LeaderBoard";
 // import HeadToHead from "../HeadToHead/HeadToHead";
@@ -19,7 +19,7 @@ const App = () => {
       <Routes>
         <Route element={<UnprotectedLayout />}>
           <Route path="/" element={<LoginScreen />} />
-          {/* <Route path="/register" element={<Register />} /> */}
+          <Route path="/register" element={<Register />} />
         </Route>
         <Route path="/home" element={<ProtectedLayout />}>
           {/* <Route path="games" element={<Card />} />
