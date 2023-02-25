@@ -13,9 +13,13 @@ import {
   FormGroup,
   FormLabel,
   FormText,
+  GoBackButton,
+  LoginContainer,
+  RegisterContainer,
   RegisterForm,
 } from "./style";
 import { SubmitButton } from "../utils";
+import { OptionsProps } from "../types";
 
 const Register = () => {
   const { login }: any = useAuth();
@@ -26,7 +30,7 @@ const Register = () => {
     password1: "",
     password2: "",
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
 
   const handleInput = (e: any) => {
     const { name, value } = e.target;
@@ -35,7 +39,7 @@ const Register = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const options = {
+    const options: OptionsProps = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +52,7 @@ const Register = () => {
       handleError
     );
     const data = await response.json();
-    if (!response.ok) {
+    if (!response) {
       setError(data);
       throw new Error("Uh oh. Something went wrong. Check your network tab!");
     } else {
@@ -59,16 +63,15 @@ const Register = () => {
   };
   return (
     <>
-      <main className="mainloginscreenregister">
-        <button
-          className="registergobackbtn"
+      <RegisterContainer>
+        <GoBackButton
           onClick={() => {
             window.history.back();
           }}
         >
           <MdArrowBackIosNew />
-        </button>
-        <div className="loginbox col-md-4 offset-md-4 col-10 offset-1">
+        </GoBackButton>
+        <LoginContainer>
           <RegisterForm onSubmit={handleSubmit}>
             <FormGroup controlId="username">
               <FormLabel>Username</FormLabel>
@@ -141,8 +144,8 @@ const Register = () => {
               })}
             <SubmitButton type="submit">Submit</SubmitButton>
           </RegisterForm>
-        </div>
-      </main>
+        </LoginContainer>
+      </RegisterContainer>
     </>
   );
 };

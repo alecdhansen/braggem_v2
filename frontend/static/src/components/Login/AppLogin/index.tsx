@@ -13,6 +13,7 @@ import {
   LoginForm,
 } from "./style";
 import { SubmitButton } from "../utils";
+import { OptionsProps } from "../types";
 
 const AppLogin = () => {
   const { login }: any = useAuth();
@@ -31,7 +32,7 @@ const AppLogin = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const options = {
+    const options: OptionsProps = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
