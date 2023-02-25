@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { ProtectedLayout } from "../navigation/ProtectedLayout";
 // import Card from "../Card/Card";
 import UnprotectedLayout from "../navigation/UnprotectedLayout";
-// import LoginHome from "../Login/LoginHome";
+import LoginScreen from "../components/LoginScreen";
 import Fof from "../components/404Page";
 // import Register from "../Login/Register";
 // import ProfilePage from "../Profile/ProfilePage";
@@ -18,8 +18,8 @@ const App = () => {
     <>
       <Routes>
         <Route element={<UnprotectedLayout />}>
-          {/* <Route path="/" element={<LoginHome />} />
-          <Route path="/register" element={<Register />} /> */}
+          <Route path="/" element={<LoginScreen />} />
+          {/* <Route path="/register" element={<Register />} /> */}
         </Route>
         <Route path="/home" element={<ProtectedLayout />}>
           {/* <Route path="games" element={<Card />} />
