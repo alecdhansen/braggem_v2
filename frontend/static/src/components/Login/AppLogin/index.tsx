@@ -11,12 +11,12 @@ import {
   LoginForm,
 } from "./style";
 import { SubmitButton } from "../utils";
-import { OptionsProps } from "../types";
+import { OptionsProps } from "../../../types";
 
 const AppLogin = () => {
   const { login }: any = useAuth();
   const [user, setUser] = useState({ username: "", password: "" });
-  const [error, setError] = useState();
+  const [error, setError]: any = useState();
 
   const handleUsernameInput = (e: any) => {
     const value = e.target.value;
@@ -38,11 +38,11 @@ const AppLogin = () => {
       },
       body: JSON.stringify(user),
     };
-    const response = await fetch("/dj-rest-auth/login/", options).catch(
+    const response: any = await fetch("/dj-rest-auth/login/", options).catch(
       handleError
     );
     const data = await response.json();
-    if (!response) {
+    if (!response.ok) {
       setError(data);
       throw new Error("Uh oh. Something went wrong. Check your network tab!");
     } else {

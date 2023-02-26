@@ -17,6 +17,7 @@ import {
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Cookies from "js-cookie";
 import { HiOutlineMenu } from "react-icons/hi";
+import { OptionsProps } from "../../types";
 
 export const ProtectedLayout = () => {
   const { user, logout }: any = useAuth();
@@ -27,7 +28,7 @@ export const ProtectedLayout = () => {
   const navigate = useNavigate();
 
   const logoutUser = async () => {
-    const options = {
+    const options: OptionsProps = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,10 +36,10 @@ export const ProtectedLayout = () => {
       },
       body: JSON.stringify(user),
     };
-    const response = await fetch("/dj-rest-auth/logout/", options).catch(
+    const response: any = await fetch("/dj-rest-auth/logout/", options).catch(
       handleError
     );
-    if (!response) {
+    if (!response.ok) {
       throw new Error("Oops! Something went wrong");
     } else {
       const data = await response.json();

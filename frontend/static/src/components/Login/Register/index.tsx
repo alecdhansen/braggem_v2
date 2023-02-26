@@ -17,7 +17,7 @@ import {
   RegisterForm,
 } from "./style";
 import { SubmitButton } from "../utils";
-import { OptionsProps } from "../types";
+import { OptionsProps } from "../../../types";
 
 const Register = () => {
   const { login }: any = useAuth();
@@ -28,7 +28,7 @@ const Register = () => {
     password1: "",
     password2: "",
   });
-  const [error, setError] = useState();
+  const [error, setError]: any = useState();
 
   const handleInput = (e: any) => {
     const { name, value } = e.target;
@@ -46,11 +46,12 @@ const Register = () => {
       body: JSON.stringify(user),
     };
 
-    const response = await fetch("/dj-rest-auth/registration/", options).catch(
-      handleError
-    );
+    const response: any = await fetch(
+      "/dj-rest-auth/registration/",
+      options
+    ).catch(handleError);
     const data = await response.json();
-    if (!response) {
+    if (!response.ok) {
       setError(data);
       throw new Error("Uh oh. Something went wrong. Check your network tab!");
     } else {

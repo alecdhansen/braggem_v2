@@ -30,6 +30,7 @@ import {
 import { favoriteTeam } from "./utils";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
+import { OptionsProps } from "../../types";
 
 const UserInfo = () => {
   const { user }: any = useAuth();
@@ -47,10 +48,10 @@ const UserInfo = () => {
   }, []);
 
   const getUserData = async () => {
-    const response = await fetch(`/api_v1/user/profile/${username}/`).catch(
-      handleError
-    );
-    if (!response) {
+    const response: any = await fetch(
+      `/api_v1/user/profile/${username}/`
+    ).catch(handleError);
+    if (!response.ok) {
       throw new Error("Network response not OK");
     } else {
       const data = await response.json();
@@ -59,10 +60,10 @@ const UserInfo = () => {
   };
 
   const getLifetimePicks = async () => {
-    const response = await fetch(`/api_v1/picks/lifetime/${username}`).catch(
-      handleError
-    );
-    if (!response) {
+    const response: any = await fetch(
+      `/api_v1/picks/lifetime/${username}`
+    ).catch(handleError);
+    if (!response.ok) {
       throw new Error("Network response not OK");
     } else {
       const data = await response.json();
@@ -91,17 +92,17 @@ const UserInfo = () => {
     formData.append("challenger", user.user);
     formData.append("opponent", userData.user);
     formData.append("date", today);
-    const options = {
+    const options: OptionsProps = {
       method: "POST",
       headers: {
         "X-CSRFToken": Cookies.get("csrftoken"),
       },
       body: formData,
     };
-    const response = await fetch("/api_v1/challenges/", options).catch(
+    const response: any = await fetch("/api_v1/challenges/", options).catch(
       handleError
     );
-    if (!response) {
+    if (!response.ok) {
       throw new Error("Network response was not OK");
     }
     const Toast = Swal.mixin({
