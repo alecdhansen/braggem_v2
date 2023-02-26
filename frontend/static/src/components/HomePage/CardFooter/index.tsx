@@ -11,7 +11,7 @@ import { IoMdClose } from "react-icons/io";
 import { AiFillLock } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
 import { OptionsProps } from "../../../types";
-import { Props } from "../types";
+import { FooterProps } from "../types";
 
 const CardFooter = ({
   todaysGames,
@@ -19,7 +19,7 @@ const CardFooter = ({
   picksCompletedPercentage,
   getTodaysPicks,
   timeUntilEstGameInMS,
-}: Props) => {
+}: FooterProps) => {
   const { user }: any = useAuth();
   const [show, setShow] = useState(false);
   const [editedPick, setEditedPick]: any = useState([]);

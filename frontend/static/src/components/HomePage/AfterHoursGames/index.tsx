@@ -1,4 +1,11 @@
-const AfterHoursGames = () => {
+import { CardProps } from "../types";
+
+const AfterHoursGames = ({
+  todaysGames,
+  handleSubmit,
+  handleAwayTeamInput,
+  handleHomeTeamInput,
+}: CardProps) => {
   return todaysGames.map((game: any) => (
     <form
       className="formboxah"

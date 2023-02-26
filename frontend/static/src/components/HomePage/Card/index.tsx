@@ -7,7 +7,6 @@ import CardFooter from "../CardFooter";
 import { handleError } from "../../../utils";
 import Cookies from "js-cookie";
 import moment from "moment";
-import { BsCheckCircleFill } from "react-icons/bs";
 import { OptionsProps } from "../../../types";
 import PreTipoffGames from "../PreTipoffGames";
 import AfterHoursGames from "../AfterHoursGames";
@@ -152,7 +151,24 @@ const Card = () => {
           </TimerContainer>
         </WelcomeContainer>
         <CardsContainer>
-          {timeUntilEstGameInMS > 0 ? <PreTipoffGames /> : <AfterHoursGames />}
+          {timeUntilEstGameInMS > 0 ? (
+            <PreTipoffGames
+              todaysGames={todaysGames}
+              handleSubmit={handleSubmit}
+              handleAwayTeamInput={handleAwayTeamInput}
+              handleHomeTeamInput={handleHomeTeamInput}
+              gameID={gameID}
+              awayTeamFocus={awayTeamFocus}
+              homeTeamFocus={homeTeamFocus}
+            />
+          ) : (
+            <AfterHoursGames
+              todaysGames={todaysGames}
+              handleSubmit={handleSubmit}
+              handleAwayTeamInput={handleAwayTeamInput}
+              handleHomeTeamInput={handleHomeTeamInput}
+            />
+          )}
         </CardsContainer>
         <CardFooter
           todaysPicks={todaysPicks}

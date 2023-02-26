@@ -1,4 +1,15 @@
-const PreTipoffGames = () => {
+import { BsCheckCircleFill } from "react-icons/bs";
+import { CardProps } from "../types";
+
+const PreTipoffGames = ({
+  todaysGames,
+  handleSubmit,
+  handleAwayTeamInput,
+  handleHomeTeamInput,
+  gameID,
+  awayTeamFocus,
+  homeTeamFocus,
+}: CardProps) => {
   return todaysGames.map((game: any) => (
     <form
       className="formbox"
@@ -90,7 +101,7 @@ const PreTipoffGames = () => {
         )}
       </div>
     </form>
-  )));
+  ));
 };
 
-export default PreTipoffGames
+export default PreTipoffGames;
