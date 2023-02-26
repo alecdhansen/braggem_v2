@@ -2,9 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import { handleError } from "../../../utils";
-//npm
 import Cookies from "js-cookie";
-//React Icons
 import { MdArrowBackIosNew } from "react-icons/md";
 import { RiErrorWarningFill } from "react-icons/ri";
 import {

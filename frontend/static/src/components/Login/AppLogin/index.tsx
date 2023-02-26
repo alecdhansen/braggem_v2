@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import { handleError } from "../../../utils";
-//npm
 import Cookies from "js-cookie";
-//React Icons
 import { RiErrorWarningFill } from "react-icons/ri";
 import {
   ErrorContainer,

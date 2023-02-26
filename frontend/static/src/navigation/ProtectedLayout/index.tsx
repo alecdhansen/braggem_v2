@@ -14,11 +14,8 @@ import {
   OffcanvasBody,
   OffcanvasHeader,
 } from "./style";
-//Bootstrap
 import Offcanvas from "react-bootstrap/Offcanvas";
-//Npm
 import Cookies from "js-cookie";
-//React Icons
 import { HiOutlineMenu } from "react-icons/hi";
 
 export const ProtectedLayout = () => {

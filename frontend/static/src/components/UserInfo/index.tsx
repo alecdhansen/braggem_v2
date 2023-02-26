@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { handleError } from "../../utils";
-//npm
 import moment from "moment";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
@@ -29,7 +28,6 @@ import {
   UsernameContainer,
 } from "./style";
 import { favoriteTeam } from "./utils";
-// React Icons
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 
