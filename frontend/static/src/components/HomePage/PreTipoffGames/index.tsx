@@ -1,5 +1,12 @@
 import { BsCheckCircleFill } from "react-icons/bs";
 import { CardProps } from "../types";
+import {
+  Form,
+  GameButtonContainer,
+  GameLocationHeader,
+  GameStatusHeader,
+  SpanBar,
+} from "./style";
 
 const PreTipoffGames = ({
   todaysGames,
@@ -11,20 +18,20 @@ const PreTipoffGames = ({
   homeTeamFocus,
 }: CardProps) => {
   return todaysGames.map((game: any) => (
-    <form
+    <Form
       className="formbox"
       data-aos="zoom-in"
       key={game.gameId}
       onSubmit={handleSubmit}
     >
-      <h4 className="gamestatus">
+      <GameStatusHeader>
         {game.day}, {game.gameStatusText}
-      </h4>
-      <h5 className="gamelocation">
+      </GameStatusHeader>
+      <GameLocationHeader>
         {game.arenaName} - {game.arenaCity}, {game.arenaState}
-      </h5>
-      <div className="spanbar"></div>
-      <div className="gamebtnhouse row">
+      </GameLocationHeader>
+      <SpanBar />
+      <GameButtonContainer>
         <button
           type="button"
           id={game.gameId}
@@ -84,7 +91,7 @@ const PreTipoffGames = ({
             </div>
           </div>
         </button>
-      </div>
+      </GameButtonContainer>
       <div>
         {localStorage.getItem(game.gameId) ? (
           <div className="picksubmitted">
@@ -100,7 +107,7 @@ const PreTipoffGames = ({
           </button>
         )}
       </div>
-    </form>
+    </Form>
   ));
 };
 
