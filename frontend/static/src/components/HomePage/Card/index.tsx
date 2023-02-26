@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import CountdownTimer from "../../CountdownTimer";
-// import CardFooter from "./CardFooter";
+import CardFooter from "../CardFooter";
 import { handleError } from "../../../utils";
 import Cookies from "js-cookie";
 import moment from "moment";
@@ -11,6 +11,14 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import { OptionsProps } from "../../../types";
 import PreTipoffGames from "../PreTipoffGames";
 import AfterHoursGames from "../AfterHoursGames";
+import {
+  CardsContainer,
+  MainContainer,
+  TimerContainer,
+  WelcomeContainer,
+  WelcomeHeader,
+  WelcomeText,
+} from "./style";
 
 const Card = () => {
   const [todaysGames, setTodaysGames] = useState([]);
@@ -117,15 +125,10 @@ const Card = () => {
   //     Aos.init({ duration: 1000 });
   //   }, []);
 
-  //Before Tip Off//
-
   const picksCompletedPercentage =
     (todaysPicks.length / todaysGames.length) * 100;
-
-  //After Tip Off//
-
-  const firstGameStartingTime = new Date(firstGameTime);
-  const firstGameStartingTimeInMS = firstGameStartingTime.getTime();
+  // const firstGameStartingTime = new Date(firstGameTime);
+  const firstGameStartingTimeInMS = new Date(firstGameTime).getTime();
   const fiveHoursInMS = 18000000; //use this line for production
   // const fiveHoursInMS = 111144000000; //use this for evening testing
   const nowInMS = new Date().getTime();
@@ -135,33 +138,30 @@ const Card = () => {
 
   return (
     <>
-      <main>
-        {timeUntilEstGameInMS > 0 ? (
-          <h4 className="welcome">
-            Welcome, {user?.username}!{" "}
-            <p className="instructions">
+      <MainContainer>
+        <WelcomeContainer>
+          <WelcomeHeader>Welcome, {user?.username}!</WelcomeHeader>
+          {timeUntilEstGameInMS > 0 && (
+            <WelcomeText>
               Select your favorite teams to win and check back tomorrow to see
               how you did!
-            </p>
-          </h4>
-        ) : (
-          <h4 className="welcome">Welcome, {user?.username}!</h4>
-        )}
-        <div className="carddiv">
-          <CountdownTimer targetDate={gameTimeCountDownInMS} />
-        </div>
-        <div className="cards col-md-10 offset-md-1 col-12">
+            </WelcomeText>
+          )}
+          <TimerContainer>
+            <CountdownTimer targetDate={gameTimeCountDownInMS} />
+          </TimerContainer>
+        </WelcomeContainer>
+        <CardsContainer>
           {timeUntilEstGameInMS > 0 ? <PreTipoffGames /> : <AfterHoursGames />}
-        </div>
-        {/* <CardFooter
+        </CardsContainer>
+        <CardFooter
           todaysPicks={todaysPicks}
-          setTodaysPicks={setTodaysPicks}
           picksCompletedPercentage={picksCompletedPercentage}
           todaysGames={todaysGames}
           getTodaysPicks={getTodaysPicks}
           timeUntilEstGameInMS={timeUntilEstGameInMS}
-        /> */}
-      </main>
+        />
+      </MainContainer>
     </>
   );
 };
