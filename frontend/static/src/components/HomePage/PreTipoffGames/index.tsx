@@ -1,11 +1,21 @@
 import { BsCheckCircleFill } from "react-icons/bs";
 import { CardProps } from "../types";
+import { activeTeam } from "../utils";
 import {
   Form,
   GameButtonContainer,
+  GameDetailsContainer,
   GameLocationHeader,
   GameStatusHeader,
+  ImageContainer,
+  PickSubmittedContainer,
   SpanBar,
+  SubmitButton,
+  SubmittedAlert,
+  TeamButton,
+  TeamCity,
+  TeamLogoImage,
+  WinLoss,
 } from "./style";
 
 const PreTipoffGames = ({
@@ -32,81 +42,79 @@ const PreTipoffGames = ({
       </GameLocationHeader>
       <SpanBar />
       <GameButtonContainer>
-        <button
+        <TeamButton
           type="button"
           id={game.gameId}
           name={game.homeTeam.teamName}
           onClick={handleAwayTeamInput}
           value={game.awayTeam.teamName}
-          className={
-            gameID == game.gameId && awayTeamFocus
-              ? `gamebtn${game.awayTeam.teamTricode} gamebtn col-12 selected-border`
-              : `gamebtn${game.awayTeam.teamTricode} gamebtn col-12`
-          }
+          background={activeTeam(game.awayTeam.teamTricode)}
+          // className=
+          //   gameID == game.gameId && awayTeamFocus
+          //     ? `gamebtn${game.awayTeam.teamTricode} gamebtn col-12 selected-border`
+          //     : `gamebtn${game.awayTeam.teamTricode} gamebtn col-12`
+          // }
           disabled={localStorage.getItem(game.gameId) ? true : false}
         >
-          <div className="imghouse">
-            {" "}
-            <img
+          <ImageContainer>
+            <TeamLogoImage
               src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
               alt=""
-              className="teamlogo"
-            ></img>
-          </div>
-          <div className="gamedetails">
-            <div className="cityteam">
+            />
+          </ImageContainer>
+          <GameDetailsContainer>
+            <TeamCity>
               {game.awayTeam.teamCity} {game.awayTeam.teamName}
-            </div>
-            <div className="winloss">
+            </TeamCity>
+            <WinLoss>
               {game.awayTeam.wins}-{game.awayTeam.losses}
-            </div>
-          </div>
-        </button>
-        <button
+            </WinLoss>
+          </GameDetailsContainer>
+        </TeamButton>
+        <TeamButton
           type="button"
           id={game.gameId}
           name={game.awayTeam.teamName}
           onClick={handleHomeTeamInput}
           value={game.homeTeam.teamName}
-          className={
-            gameID == game.gameId && homeTeamFocus
-              ? `gamebtn${game.homeTeam.teamTricode} gamebtn col-12 selected-border`
-              : `gamebtn${game.homeTeam.teamTricode} gamebtn col-12`
-          }
+          background={activeTeam(game.homeTeam.teamTricode)}
+          // className={
+          //   gameID == game.gameId && homeTeamFocus
+          //     ? `gamebtn${game.homeTeam.teamTricode} gamebtn col-12 selected-border`
+          //     : `gamebtn${game.homeTeam.teamTricode} gamebtn col-12`
+          // }
           disabled={localStorage.getItem(game.gameId) ? true : false}
         >
-          <div className="imghouse">
-            <img
+          <ImageContainer>
+            <TeamLogoImage
               src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
               alt=""
-              className="teamlogo"
-            ></img>
-          </div>
-          <div className="gamedetails">
-            <div className="cityteam">
+            />
+          </ImageContainer>
+          <GameDetailsContainer>
+            <TeamCity>
               {game.homeTeam.teamCity} {game.homeTeam.teamName}
-            </div>
-            <div className="winloss">
+            </TeamCity>
+            <WinLoss>
               {game.homeTeam.wins}-{game.homeTeam.losses}
-            </div>
-          </div>
-        </button>
+            </WinLoss>
+          </GameDetailsContainer>
+        </TeamButton>
       </GameButtonContainer>
-      <div>
+      <PickSubmittedContainer>
         {localStorage.getItem(game.gameId) ? (
-          <div className="picksubmitted">
+          <SubmittedAlert>
             Pick Submitted <BsCheckCircleFill style={{ marginLeft: "5px" }} />
-          </div>
+          </SubmittedAlert>
         ) : (
-          <button
+          <SubmitButton
             type="submit"
             disabled={gameID == game.gameId ? false : true}
-            className="submitbtn submit"
           >
             {gameID == game.gameId ? "Submit Pick" : "Choose a team!"}
-          </button>
+          </SubmitButton>
         )}
-      </div>
+      </PickSubmittedContainer>
     </Form>
   ));
 };
