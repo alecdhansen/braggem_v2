@@ -1,4 +1,24 @@
+import { SpanBar } from "../PreTipoffGames/style";
 import { CardProps } from "../types";
+import { activeTeam } from "../utils";
+import {
+  Form,
+  InfoContainer,
+  StatusContainer,
+  Status,
+  Location,
+  AfterHoursStatus,
+  ScoreContainer,
+  Tricode,
+  Score,
+  GameButtonContainer,
+  TeamButton,
+  ImageContainer,
+  TeamLogoImage,
+  GameDetailsContainer,
+  TeamCity,
+  WinLoss,
+} from "./style";
 
 const AfterHoursGames = ({
   todaysGames,
@@ -7,96 +27,92 @@ const AfterHoursGames = ({
   handleHomeTeamInput,
 }: CardProps) => {
   return todaysGames.map((game: any) => (
-    <form
-      className="formboxah"
-      data-aos="zoom-in"
+    <Form
+      // data-aos="zoom-in"
       key={game.gameId}
       onSubmit={handleSubmit}
     >
-      <div className="gameinfo">
+      <InfoContainer>
         {game.gameStatus === 1 ? (
-          <div>
-            <h4 className="gamestatus">
+          <StatusContainer>
+            <Status>
               {game.day}, {game.gameStatusText}
-            </h4>
-            <h5 className="gamelocationah">
+            </Status>
+            <Location>
               {game.arenaName} - {game.arenaCity}, {game.arenaState}
-            </h5>
-          </div>
+            </Location>
+          </StatusContainer>
         ) : game.gameStatus === 2 ? (
-          <div>
-            <h4 className="gamestatusah">{game.gameStatusText}</h4>
-            <h5 className="gamelocationah">
+          <StatusContainer>
+            <AfterHoursStatus>{game.gameStatusText}</AfterHoursStatus>
+            <Location>
               {game.arenaName} - {game.arenaCity}, {game.arenaState}
-            </h5>
-          </div>
+            </Location>
+          </StatusContainer>
         ) : (
-          <div>
-            <h4 className="gamestatusah">{game.gameStatusText}</h4>
-            <div className="gamescore3">
-              <span className="tricode">{game.awayTeam.teamTricode}</span>{" "}
-              <span className="score">{game.awayTeam.score}</span> -{" "}
-              <span className="tricode">{game.homeTeam.teamTricode}</span>{" "}
-              <span className="score">{game.homeTeam.score}</span>
-            </div>
-          </div>
+          <StatusContainer>
+            <AfterHoursStatus>{game.gameStatusText}</AfterHoursStatus>
+            <ScoreContainer>
+              <Tricode>{game.awayTeam.teamTricode}</Tricode>
+              <Score>{game.awayTeam.score}</Score> -
+              <Tricode>{game.homeTeam.teamTricode}</Tricode>
+              <Score>{game.homeTeam.score}</Score>
+            </ScoreContainer>
+          </StatusContainer>
         )}
-      </div>
-      <div className="spanbar"></div>
-      <div className="gamebtnhouse row">
-        <button
+      </InfoContainer>
+      <SpanBar />
+      <GameButtonContainer>
+        <TeamButton
           disabled
           type="button"
           id={game.gameId}
           name="awayTeam"
           onClick={handleAwayTeamInput}
           value={game.awayTeam.teamName}
-          className={`gamebtn${game.awayTeam.teamTricode} gamebtn col-12`}
+          background={activeTeam(game.awayTeam.teamTricode)}
         >
-          <div className="imghouse">
-            {" "}
-            <img
+          <ImageContainer>
+            <TeamLogoImage
               src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
               alt=""
-              className="teamlogo"
-            ></img>
-          </div>
-          <div className="gamedetails">
-            <div className="cityteam">
+            />
+          </ImageContainer>
+          <GameDetailsContainer>
+            <TeamCity>
               {game.awayTeam.teamCity} {game.awayTeam.teamName}
-            </div>
-            <div className="winloss">
+            </TeamCity>
+            <WinLoss>
               {game.awayTeam.wins}-{game.awayTeam.losses}
-            </div>
-          </div>
-        </button>
-        <button
+            </WinLoss>
+          </GameDetailsContainer>
+        </TeamButton>
+        <TeamButton
           disabled
           type="button"
           id={game.gameId}
           name="homeTeam"
           onClick={handleHomeTeamInput}
           value={game.homeTeam.teamName}
-          className={`gamebtn${game.homeTeam.teamTricode} gamebtn col-12`}
+          background={activeTeam(game.homeTeam.teamTricode)}
         >
-          <div className="imghouse">
-            <img
+          <ImageContainer>
+            <TeamLogoImage
               src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
               alt=""
-              className="teamlogo"
-            ></img>
-          </div>
-          <div className="gamedetails">
-            <div className="cityteam">
+            />
+          </ImageContainer>
+          <GameDetailsContainer>
+            <TeamCity>
               {game.homeTeam.teamCity} {game.homeTeam.teamName}
-            </div>
-            <div className="winloss">
+            </TeamCity>
+            <WinLoss>
               {game.homeTeam.wins}-{game.homeTeam.losses}
-            </div>
-          </div>
-        </button>
-      </div>
-    </form>
+            </WinLoss>
+          </GameDetailsContainer>
+        </TeamButton>
+      </GameButtonContainer>
+    </Form>
   ));
 };
 export default AfterHoursGames;
