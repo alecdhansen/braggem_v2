@@ -15,3 +15,7 @@ export type CardProps = {
   awayTeamFocus?: any;
   homeTeamFocus?: any;
 };
+
+export type GameButtonProps = {
+  background?: string;
+};
