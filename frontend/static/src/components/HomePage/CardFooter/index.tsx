@@ -1,5 +1,4 @@
-import "./CardStyles/CardFooter.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 //Npm
 import Cookies from "js-cookie";

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: relative;
+  width: 100vw;
 `;
 
 export const CurveHead = styled.div.attrs(() => ({
@@ -15,7 +16,7 @@ export const CurveHead = styled.div.attrs(() => ({
   border-style: groove;
   /* here */
   border: 3px solid #20425f;
-  border-top: none;
+  border-top: 0px;
   top: 0;
   z-index: 20;
   padding: 0px;
