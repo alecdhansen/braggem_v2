@@ -1,7 +1,7 @@
 import { useAuth } from "../hooks/useAuth";
 import { Routes, Route } from "react-router-dom";
 import { ProtectedLayout } from "../navigation/ProtectedLayout";
-// import Card from "../Card/Card";
+import Card from "../components/HomePage/Card";
 import UnprotectedLayout from "../navigation/UnprotectedLayout";
 import LoginScreen from "../components/Login/LoginScreen";
 import Fof from "../components/404Page";
@@ -22,8 +22,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
         </Route>
         <Route path="/home" element={<ProtectedLayout />}>
-          {/* <Route path="games" element={<Card />} />
-          <Route path={user?.username} element={<ProfilePage />} />
+          <Route path="games" element={<Card />} />
+          {/* <Route path={user?.username} element={<ProfilePage />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="headtohead" element={<HeadToHead />} /> */}
           <Route path=":username" element={<UserInfo />} />
