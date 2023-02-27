@@ -169,3 +169,96 @@ export const ImageContainer = styled.div`
 export const NBALogo = styled.img`
   width: 100%;
 `;
+
+export const ChallengeInfoContainer = styled.div.attrs(() => ({
+  className: "col-9",
+}))`
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const InfoContainer = styled.div.attrs(() => ({
+  className: "row",
+}))``;
+
+export const DetailsContainer = styled.div.attrs(() => ({
+  className: "col-4",
+}))<{ paddingBottom?: string }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  min-height: 100px;
+  @media (max-width: 768px) {
+    display: flex;
+    text-align: center;
+  }
+`;
+
+export const Matchup = styled.span`
+  font-weight: 800;
+  margin: 0px 15px 0px 20px;
+  text-decoration: underline;
+  @media (max-width: 768px) {
+    font-size: 11px;
+    margin: 0px 0px 0px 5px;
+  }
+`;
+
+export const UserContainer = styled.div`
+  display: flex;
+  align-items: center;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+`;
+
+export const AvatarContainer = styled.div`
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: fill;
+  border: 0.5px solid var(--navyblue);
+  margin-right: 3px;
+`;
+
+export const Avatar = styled.img`
+  width: 100%;
+  vertical-align: top;
+`;
+
+export const ResultHeader = styled.span`
+  margin-right: 30px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-align: center;
+  @media (max-width: 768px) {
+    display: flex;
+    text-align: center;
+    margin: 0px 10px 0px 0px;
+    font-size: 11px;
+  }
+`;
+
+export const Result = styled.span`
+  margin-right: 30px;
+  font-weight: 700;
+  font-style: italic;
+  @media (max-width: 768px) {
+    margin: 0px 10px 0px 0px;
+    font-size: 12px;
+  }
+`;
+
+export const FinalResult = styled.span`
+  margin-right: 30px;
+  @media (max-width: 768px) {
+    margin: 0px 10px 0px 0px;
+    font-size: 12px;
+  }
+`;

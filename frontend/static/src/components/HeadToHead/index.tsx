@@ -24,6 +24,16 @@ import {
   LogoAndGamesContainer,
   ImageContainer,
   NBALogo,
+  ChallengeInfoContainer,
+  InfoContainer,
+  DetailsContainer,
+  Matchup,
+  UserContainer,
+  AvatarContainer,
+  Avatar,
+  ResultHeader,
+  Result,
+  FinalResult,
 } from "./style";
 
 const HeadToHead = () => {
@@ -143,90 +153,77 @@ const HeadToHead = () => {
                     )}
                   </DateContainer>
                   {user?.username === challenge.challenger_username && (
-                    <div className="side3 col-9">
-                      <div className="row">
-                        <div className="h2hdetails col-4">
-                          <div className="matchup">Correct Picks</div>
+                    <ChallengeInfoContainer>
+                      <InfoContainer>
+                        <DetailsContainer>
+                          <Matchup>Correct Picks</Matchup>
                           {challenge.challenger_picks_correct}
-                        </div>
-                        <div className="h2hdetails col-4">
-                          <span className="matchup">Opponent</span>
-                          <div className="userplusavatarplusscore">
-                            <div className="avatarboxh2h">
-                              <img
-                                style={{ width: "100%", verticalAlign: "top" }}
-                                src={challenge.opponent_avatar}
-                                alt=""
-                              />
-                            </div>
+                        </DetailsContainer>
+                        <DetailsContainer>
+                          <Matchup>Opponent</Matchup>
+                          <UserContainer>
+                            <AvatarContainer>
+                              <Avatar src={challenge.opponent_avatar} alt="" />
+                            </AvatarContainer>
                             {challenge.opponent_username}
-                          </div>
-                        </div>
-                        <div className="h2hdetails result2 col-4">
-                          <span className="result">Challenge Winner</span>
+                          </UserContainer>
+                        </DetailsContainer>
+                        <DetailsContainer paddingBottom="19px">
+                          <ResultHeader>Challenge Winner</ResultHeader>
                           {challenge.winner === "Tie" &&
                           challenge.date === currentDay ? (
-                            <div>
-                              <span className="winner cip">In progress</span>
-                            </div>
+                            <Result>In progress</Result>
                           ) : (
-                            <div>
+                            <>
                               {challenge.date !== currentDay &&
                               challenge.winner === "Tie" ? (
-                                <span className="winner">You Tied!</span>
+                                <FinalResult>You Tied!</FinalResult>
                               ) : (
-                                <span className="winner">
-                                  {challenge.winner}
-                                </span>
+                                <FinalResult>{challenge.winner}</FinalResult>
                               )}
-                            </div>
+                            </>
                           )}
-                        </div>
-                      </div>
-                    </div>
+                        </DetailsContainer>
+                      </InfoContainer>
+                    </ChallengeInfoContainer>
                   )}
                   {user?.username === challenge.opponent_username && (
-                    <div className="side3 col-9">
-                      <div className="row row1">
-                        <div className="h2hdetails col-4">
-                          <div className="matchup">Correct Picks</div>
+                    <ChallengeInfoContainer>
+                      <InfoContainer>
+                        <DetailsContainer>
+                          <Matchup>Correct Picks</Matchup>
                           {challenge.opponent_picks_correct}
-                        </div>
-                        <div className="h2hdetails col-4">
-                          <span className="matchup">Opponent</span>
-                          <div className="userplusavatarplusscore">
-                            <div className="avatarboxh2h">
-                              <img
-                                style={{ width: "100%", verticalAlign: "top" }}
+                        </DetailsContainer>
+                        <DetailsContainer>
+                          <Matchup>Opponent</Matchup>
+                          <UserContainer>
+                            <AvatarContainer>
+                              <Avatar
                                 src={challenge.challenger_avatar}
                                 alt=""
                               />
-                            </div>
+                            </AvatarContainer>
                             {challenge.challenger_username}
-                          </div>
-                        </div>
-                        <div className="h2hdetails result2 col-4">
-                          <span className="result">Challenge Winner</span>
+                          </UserContainer>
+                        </DetailsContainer>
+                        <DetailsContainer paddingBottom="19px">
+                          <ResultHeader>Challenge Winner</ResultHeader>
                           {challenge.winner === "Tie" &&
                           challenge.date === currentDay ? (
-                            <div>
-                              <span className="winner cip">In progress</span>
-                            </div>
+                            <Result>In progress</Result>
                           ) : (
-                            <div>
+                            <>
                               {challenge.date !== currentDay &&
                               challenge.winner === "Tie" ? (
-                                <span className="winner">You Tied!</span>
+                                <FinalResult>You Tied!</FinalResult>
                               ) : (
-                                <span className="winner">
-                                  {challenge.winner}
-                                </span>
+                                <FinalResult>{challenge.winner}</FinalResult>
                               )}
-                            </div>
+                            </>
                           )}
-                        </div>
-                      </div>
-                    </div>
+                        </DetailsContainer>
+                      </InfoContainer>
+                    </ChallengeInfoContainer>
                   )}
                 </ChallengeContainer>
               ))}
