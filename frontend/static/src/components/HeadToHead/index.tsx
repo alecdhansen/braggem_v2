@@ -35,6 +35,7 @@ import {
   Result,
   FinalResult,
 } from "./style";
+import Image from "../Base/Image";
 
 const HeadToHead = () => {
   const [challenges, setChallenges] = useState([]);
@@ -143,9 +144,10 @@ const HeadToHead = () => {
                     {challenge.games >= 1 && (
                       <LogoAndGamesContainer>
                         <ImageContainer>
-                          <NBALogo
-                            src={require("../../media/NBA.png")}
-                            alt=""
+                          <Image
+                            imageKey="NBA"
+                            altText="NBA Logo"
+                            style={{ width: "100%" }}
                           />
                         </ImageContainer>
                         {challenge.games} Games

@@ -1,21 +1,7 @@
 {
-  "src/main.css": {
-    "file": "assets/main-1216ce72.css",
-    "src": "src/main.css"
-  },
-  "src/main.tsx": {
-    "assets": [
-      "assets/basketball-c371d764.png"
-    ],
-    "css": [
-      "assets/main-1216ce72.css"
-    ],
-    "file": "assets/key-389ee1af.js",
+  "index.html": {
+    "file": "assets/index-5cb9e503.js",
     "isEntry": true,
-    "src": "src/main.tsx"
-  },
-  "src/media/basketball.png": {
-    "file": "assets/basketball-c371d764.png",
-    "src": "src/media/basketball.png"
+    "src": "index.html"
   }
 }

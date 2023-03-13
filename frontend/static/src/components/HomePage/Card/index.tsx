@@ -61,7 +61,7 @@ const Card = () => {
     const options: OptionsProps = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": process.env.REACT_APP_APIKEY,
+        "X-RapidAPI-Key": import.meta.env.VITE_APIKEY,
         "X-RapidAPI-Host": "nba-schedule.p.rapidapi.com",
       },
     };
@@ -111,6 +111,7 @@ const Card = () => {
       throw new Error("Network response was not OK");
     } else {
       const data = await response.json();
+      const json = data === "" ? {} : JSON.parse(data);
       localStorage.setItem(`00${gameID}`, userPick);
     }
     e.target.children[3].children[0].disabled = true;

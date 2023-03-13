@@ -19,6 +19,7 @@ import {
   TeamCity,
   WinLoss,
 } from "./style";
+import Image from "../../Base/Image";
 
 const AfterHoursGames = ({
   todaysGames,
@@ -73,9 +74,9 @@ const AfterHoursGames = ({
           background={activeTeam(game.awayTeam.teamTricode)}
         >
           <ImageContainer>
-            <TeamLogoImage
-              src={require(`../../media/${game.awayTeam.teamTricode}.png`)}
-              alt=""
+            <Image
+              imageKey={game.awayTeam.teamTricode}
+              style={{ width: "100%" }}
             />
           </ImageContainer>
           <GameDetailsContainer>
@@ -97,9 +98,9 @@ const AfterHoursGames = ({
           background={activeTeam(game.homeTeam.teamTricode)}
         >
           <ImageContainer>
-            <TeamLogoImage
-              src={require(`../../media/${game.homeTeam.teamTricode}.png`)}
-              alt=""
+            <Image
+              imageKey={game.homeTeam.teamTricode}
+              style={{ width: "100%" }}
             />
           </ImageContainer>
           <GameDetailsContainer>
