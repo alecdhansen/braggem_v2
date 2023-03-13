@@ -16,7 +16,11 @@ const defaultProps: ImageProps = {
 
 const Image = (props: ImageProps) => {
   return (
-    <img src={images[props.imageKey]} alt={props.altText} style={props.style} />
+    <img
+      src={images[props.imageKey as keyof typeof images]}
+      alt={props.altText}
+      style={props.style}
+    />
   );
 };
 
