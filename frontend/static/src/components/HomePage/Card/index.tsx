@@ -46,9 +46,9 @@ const Card = () => {
   }, [userPick]);
 
   const getTodaysPicks = async () => {
-    const response: any = await fetch(`/api_v1/picks/current/${user.id}`).catch(
-      handleError
-    );
+    const response: any = await fetch(
+      `http://localhost:8000/api_v1/picks/current/${user.id}/`
+    ).catch(handleError);
     if (!response.ok) {
       throw new Error("Network response not OK");
     } else {
@@ -69,6 +69,7 @@ const Card = () => {
       `https://nba-schedule.p.rapidapi.com/schedule?date=${currentDay}`,
       options
     ).then((response) => response.json());
+    console.log({ data }); //"too many requests" ??
     setTodaysGames(data[0].games);
     setFirstGameTime(data[0].games[0].gameDateTimeEst);
     setGameDate(moment(data[0].games[0].gameDateTimeEst).format("YYYY-MM-DD"));
@@ -111,7 +112,6 @@ const Card = () => {
       throw new Error("Network response was not OK");
     } else {
       const data = await response.json();
-      const json = data === "" ? {} : JSON.parse(data);
       localStorage.setItem(`00${gameID}`, userPick);
     }
     e.target.children[3].children[0].disabled = true;
