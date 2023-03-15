@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "api.apps.ApiConfig",
     "cards.apps.CardsConfig",
     "django_vite",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
