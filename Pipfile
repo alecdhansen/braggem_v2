@@ -13,6 +13,8 @@ pillow = "~=9.4.0"
 djangorestframework = "~=3.14.0"
 dj-rest-auth = "~=2.2.7"
 django-allauth = "~=0.52.0"
+django-extensions = "*"
+django-vite = "~=2.0.2"
 
 [dev-packages]
 
